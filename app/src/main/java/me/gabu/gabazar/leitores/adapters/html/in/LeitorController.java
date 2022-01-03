@@ -32,18 +32,15 @@ public class LeitorController {
     private @Autowired LeitorService service;
     private @Autowired TokenService tokenService;
 
-    private LeitorDTOMapper mapper = LeitorDTOMapper.INSTANCE;
-
     @PostMapping(produces = "application/json")
     public @ResponseBody LeitorDTO post(@RequestBody LeitorDTO leitorDTO, @RequestHeader("token") String token) {
         log.info("[POST] [/leitores] Request: {}", leitorDTO);
 
         validaToken(token);
 
-        Leitor leitor = mapper.leitorDtoToLeitor(leitorDTO);
-        Leitor leitorCriada = service.criarLeitor(leitor, getUsuario(token));
+        Leitor leitorCriado = service.criarLeitor(leitorDTO.toModel(), getUsuario(token));
 
-        return mapper.leitorToLeitorDto(leitorCriada);
+        return LeitorDTO.fromModel(leitorCriado);
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
@@ -52,7 +49,7 @@ public class LeitorController {
 
         validaToken(token);
 
-        return mapper.leitorToLeitorDto(service.consultarLeitor(id));
+        return LeitorDTO.fromModel(service.consultarLeitor(id));
     }
 
     @PutMapping(value = "/{id}", produces = "application/json")
@@ -62,10 +59,10 @@ public class LeitorController {
 
         validaToken(token);
 
-        Leitor leitor = mapper.leitorDtoToLeitor(leitorDTO);
+        Leitor leitor = leitorDTO.toModel();
         leitor.setId(id);
 
-        return mapper.leitorToLeitorDto(service.atualizarLeitor(leitor, getUsuario(token)));
+        return LeitorDTO.fromModel(service.atualizarLeitor(leitor, getUsuario(token)));
     }
 
     @DeleteMapping(value = "/{id}", produces = "application/json")
@@ -84,7 +81,7 @@ public class LeitorController {
             @RequestHeader("token") String token) {
         validaToken(token);
 
-        return mapper.leitorToLeitorDto(service.listarLeitores(nome));
+        return LeitorDTO.fromModel(service.listarLeitores(nome));
     }
 
     private String getUsuario(String token) {
