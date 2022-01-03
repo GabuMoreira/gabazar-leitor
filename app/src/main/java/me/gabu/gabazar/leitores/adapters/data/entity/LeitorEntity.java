@@ -66,18 +66,18 @@ public class LeitorEntity {
     }
 
     public Leitor toModel() {
-        return LeitorEntityMapper.INSTANCE.leitorEntityToLeitor(this);
+        return LeitorEntityMapper.INSTANCE.entityToModel(this);
     }
 
     public static Collection<Leitor> toModel(Collection<LeitorEntity> leitores) {
-        return LeitorEntityMapper.INSTANCE.leitorEntityToLeitor(leitores);
+        return LeitorEntityMapper.INSTANCE.entityToModel(leitores);
     }
 
     public static LeitorEntity fromModel(Leitor leitor) {
-        return LeitorEntityMapper.INSTANCE.leitorToLeitorEntity(leitor);
+        return LeitorEntityMapper.INSTANCE.modelToEntity(leitor);
     }
 
     public static Collection<LeitorEntity> fromModel(Collection<Leitor> leitor) {
-        return LeitorEntityMapper.INSTANCE.leitorToLeitorEntity(leitor);
+        return LeitorEntityMapper.INSTANCE.modelToEntity(leitor);
     }
 }

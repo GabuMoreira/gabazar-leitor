@@ -27,14 +27,14 @@ public class LeitorDTO {
     private @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") Date dataAlteracao;
 
     public Leitor toModel() {
-        return LeitorDTOMapper.INSTANCE.leitorDtoToLeitor(this);
+        return LeitorDTOMapper.INSTANCE.dtoToModel(this);
     }
 
     public static LeitorDTO fromModel(Leitor leitor) {
-        return LeitorDTOMapper.INSTANCE.leitorToLeitorDto(leitor);
+        return LeitorDTOMapper.INSTANCE.modelToDto(leitor);
     }
 
     public static Collection<LeitorDTO> fromModel(Collection<Leitor> leitor) {
-        return LeitorDTOMapper.INSTANCE.leitorToLeitorDto(leitor);
+        return LeitorDTOMapper.INSTANCE.modelToDto(leitor);
     }
 }
