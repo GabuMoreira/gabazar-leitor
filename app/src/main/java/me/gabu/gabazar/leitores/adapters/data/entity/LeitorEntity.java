@@ -1,5 +1,6 @@
 package me.gabu.gabazar.leitores.adapters.data.entity;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
 
@@ -16,6 +17,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import me.gabu.gabazar.leitores.adapters.data.entity.mapper.LeitorEntityMapper;
+import me.gabu.gabazar.leitores.core.model.Leitor;
 
 @Getter
 @Setter
@@ -62,4 +65,19 @@ public class LeitorEntity {
         log.info("[ENTITY] [POS-REMOVAL] Usuario {} apagou o leitor {}", usuarioAlteracao, this);
     }
 
+    public Leitor toModel() {
+        return LeitorEntityMapper.INSTANCE.leitorEntityToLeitor(this);
+    }
+
+    public static Collection<Leitor> toModel(Collection<LeitorEntity> leitores) {
+        return LeitorEntityMapper.INSTANCE.leitorEntityToLeitor(leitores);
+    }
+
+    public static LeitorEntity fromModel(Leitor leitor) {
+        return LeitorEntityMapper.INSTANCE.leitorToLeitorEntity(leitor);
+    }
+
+    public static Collection<LeitorEntity> fromModel(Collection<Leitor> leitor) {
+        return LeitorEntityMapper.INSTANCE.leitorToLeitorEntity(leitor);
+    }
 }
