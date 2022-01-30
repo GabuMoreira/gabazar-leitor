@@ -1,4 +1,4 @@
-package me.gabu.gabazar.leitores.adapters.html.in;
+package me.gabu.gabazar.leitores.adapters.http.in;
 
 import java.util.Collection;
 
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import me.gabu.gabazar.leitores.adapters.html.in.dto.LeitorDTO;
+import me.gabu.gabazar.leitores.adapters.http.in.dto.LeitorDTO;
 import me.gabu.gabazar.leitores.core.model.Leitor;
 import me.gabu.gabazar.leitores.service.LeitorService;
 import me.gabu.gabazar.leitores.service.TokenService;

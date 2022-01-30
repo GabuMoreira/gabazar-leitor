@@ -1,4 +1,4 @@
-package me.gabu.gabazar.leitores.adapters.html.in.dto;
+package me.gabu.gabazar.leitores.adapters.http.in.dto;
 
 import java.util.Collection;
 import java.util.Date;
@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiParam;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import me.gabu.gabazar.leitores.adapters.html.in.dto.mapper.LeitorDTOMapper;
+import me.gabu.gabazar.leitores.adapters.http.in.dto.mapper.LeitorDTOMapper;
 import me.gabu.gabazar.leitores.core.model.Leitor;
 
 @Getter

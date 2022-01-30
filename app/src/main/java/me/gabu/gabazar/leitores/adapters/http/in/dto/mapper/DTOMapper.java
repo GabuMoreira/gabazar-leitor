@@ -1,4 +1,4 @@
-package me.gabu.gabazar.leitores.adapters.html.in.dto.mapper;
+package me.gabu.gabazar.leitores.adapters.http.in.dto.mapper;
 
 import java.util.Collection;
 
