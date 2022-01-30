@@ -1,4 +1,4 @@
-package me.gabu.gabazar.leitores.adapters.html.in;
+package me.gabu.gabazar.leitores.adapters.http.in;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -54,7 +54,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorData, status);
     }
 
-    private String getPath(WebRequest request) {
+    protected String getPath(WebRequest request) {
         return ((ServletWebRequest) request).getRequest().getServletPath();
     }
 }

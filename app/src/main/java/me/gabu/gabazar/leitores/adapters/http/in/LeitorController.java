@@ -1,4 +1,4 @@
-package me.gabu.gabazar.leitores.adapters.html.in;
+package me.gabu.gabazar.leitores.adapters.http.in;
 
 import java.util.Collection;
 
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import me.gabu.gabazar.leitores.adapters.html.in.dto.LeitorDTO;
-import me.gabu.gabazar.leitores.adapters.html.in.dto.mapper.LeitorDTOMapper;
+import me.gabu.gabazar.leitores.adapters.http.in.dto.LeitorDTO;
 import me.gabu.gabazar.leitores.core.model.Leitor;
 import me.gabu.gabazar.leitores.service.LeitorService;
 import me.gabu.gabazar.leitores.service.TokenService;
@@ -27,12 +27,13 @@ import me.gabu.gabazar.leitores.service.TokenService;
 @Slf4j
 @Controller
 @RequestMapping("/leitores")
+@Api(value = "Leitores", tags = "Leitores")
 public class LeitorController {
 
     private @Autowired LeitorService service;
     private @Autowired TokenService tokenService;
 
-    @PostMapping(produces = "application/json")
+    @PostMapping()
     public @ResponseBody LeitorDTO post(@RequestBody LeitorDTO leitorDTO, @RequestHeader("token") String token) {
         log.info("[POST] [/leitores] Request: {}", leitorDTO);
 
@@ -43,7 +44,7 @@ public class LeitorController {
         return LeitorDTO.fromModel(leitorCriado);
     }
 
-    @GetMapping(value = "/{id}", produces = "application/json")
+    @GetMapping("/{id}")
     public @ResponseBody LeitorDTO getByID(@PathVariable("id") String id, @RequestHeader("token") String token) {
         log.info("[GET] [/leitores/{}]", id);
 
@@ -52,7 +53,7 @@ public class LeitorController {
         return LeitorDTO.fromModel(service.consultarLeitor(id));
     }
 
-    @PutMapping(value = "/{id}", produces = "application/json")
+    @PutMapping("/{id}")
     public @ResponseBody LeitorDTO put(@PathVariable("id") String id, @RequestHeader("token") String token,
             @RequestBody LeitorDTO leitorDTO) {
         log.info("[PUT] [/leitores/{}] Request: {}", id, leitorDTO);
@@ -65,7 +66,7 @@ public class LeitorController {
         return LeitorDTO.fromModel(service.atualizarLeitor(leitor, getUsuario(token)));
     }
 
-    @DeleteMapping(value = "/{id}", produces = "application/json")
+    @DeleteMapping("/{id}")
     public ResponseEntity<LeitorDTO> delete(@PathVariable("id") String id, @RequestHeader("token") String token) {
         log.info("[DELETE] [/leitores/{}]", id);
 
